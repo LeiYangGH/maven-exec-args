@@ -11,12 +11,45 @@
   <properties>
     <maven.compiler.source>11</maven.compiler.source>
     <maven.compiler.target>11</maven.compiler.target>
+    <input.name>leiyang</input.name>
+    <input.gener>F</input.gener>
   </properties>
-<dependencies>
-  <dependency>
-    <groupId>net.sourceforge.argparse4j</groupId>
-    <artifactId>argparse4j</artifactId>
-    <version>0.9.0</version>
-  </dependency>
-</dependencies>
+  <dependencies>
+    <dependency>
+      <groupId>net.sourceforge.argparse4j</groupId>
+      <artifactId>argparse4j</artifactId>
+      <version>0.9.0</version>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+          </execution>
+        </executions>
+        <configuration>
+          <includePluginDependencies>true</includePluginDependencies>
+          <executable>java</executable>
+          <arguments>
+            <argument>-classpath</argument>
+            <classpath/>
+            <argument>com.Main</argument>
+            <argument>-n</argument>
+            <argument>${input.name}</argument>
+            <argument>-g</argument>
+            <argument>${input.gener}</argument>
+          </arguments>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>
